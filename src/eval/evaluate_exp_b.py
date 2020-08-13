@@ -10,6 +10,9 @@ import pandas as pd
 from tqdm import tqdm
 from tabulate import tabulate
 
+from scipy.spatial.distance import pdist
+from scipy.spatial.distance import squareform
+
 os.environ["PATH"] += os.pathsep + "/usr/local/bin"
 os.environ["PATH"] += os.pathsep + "/Library/Tex/texbin"
 
@@ -447,3 +450,58 @@ if __name__ == "__main__":
     benchmark_table.to_csv(f"{config.reporting_path}/exp_b_results_table.csv", index=False)
     with open(f"{config.reporting_path}/exp_b_results_table_md.txt", "w") as f:
         print(tabulate(benchmark_table, tablefmt="pipe", headers="keys"), file=f)
+
+    logger.info("Computing L2 distance to vector of best performances")
+
+    df = pd.read_csv(f"{config.reporting_path}/exp_b_results_table.csv").transpose()
+    df = df.rename(columns=df.iloc[0,:]).drop(['datasets'], axis=0)
+
+    df = df.replace(np.nan, 0)
+
+    kernels = df.index
+    datasets = df.columns
+
+    # create a new df that contains the accuracy means
+    mean_df = df.copy()
+    for kernel in kernels:
+        mean_df.loc[kernel,:] = mean_df.loc[kernel,:].apply(lambda x: float(x[:5]) if not x == 0 else 0)
+
+    # create a new df that contains the accuracy standard deviations
+    std_df = df.copy()
+    for kernel in kernels:
+        std_df.loc[kernel,:] = std_df.loc[kernel,:].apply(lambda x: float(x[-5:]) if not x == 0 else 0)
+
+    # create a vector the contains the best accuracy achieved by any model in our experimet
+    best_vec = mean_df.apply(max, axis=0)
+
+    # add the vector of best performances to the mean accuracy dataframe
+    mean_df.loc['best'] = best_vec
+
+    # create an empty df to store the l2 distances of each GK to the best performance vector in
+    l2_dist_df = pd.DataFrame(columns=mean_df.index)
+
+    np.random.seed(1)
+    # iterate over sampels
+    for i in range(100):
+        # create a new df for the samples
+        mean_df_l2 = pd.DataFrame(columns=datasets)
+        for j, kernel in enumerate(kernels):
+            # for each GK, sample a Gaussian vector with mean and standard deviation according to the kernels performance on each dataset
+            mean_df_l2.loc[kernel] = np.random.normal(mean_df.loc[kernel],std_df.loc[kernel]).tolist()
+        # add the best vector to the current sample
+        mean_df_l2.loc['best'] = best_vec
+        
+        # compute the pairwise distances and only retain the last row of the square distance matrix
+        dist = squareform(pdist(mean_df_l2.values))[-1]
+        l2_dist_df.loc[i] = dist
+
+    l2_mean_list = []
+    l2_std_list = []
+    for kernel in kernels:
+        l2_mean_list.append(l2_dist_df.loc[:,kernel].values.mean())
+        l2_std_list.append(l2_dist_df.loc[:,kernel].values.std())
+        logger.info(f"{kernel} -- {l2_mean_list[-1].round(2)} ± {l2_std_list[-1].round(2)}")
+
+    l2_dist_to_best_df = pd.DataFrame.from_dict({'mean': l2_mean_list, "std": l2_std_list})
+    l2_dist_to_best_df["kernel"] = kernels
+    l2_dist_to_best_df.to_csv(f"{config.reporting_path}/l2_distance_to_best.csv", index=False)

@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../mt-gntk"
+		}
+	],
+	"settings": {
+		"python.formatting.provider": "black",
+		// "editor.formatOnSave": true
+	}
+}

@@ -1,0 +1,17 @@
+networkx==2.3
+pandas==1.0.5
+torch==1.5.1
+pkgconfig
+joblib==0.15.1
+line_profiler==3.0.2
+numpy==1.17.2
+tabulate==0.8.7
+scipy==1.4.1
+toml==0.10.0
+graphkernels==0.2.1
+matplotlib==3.1.1
+tqdm==4.46.1
+colorlog==4.1.0
+Pillow==7.2.0
+python_igraph==0.8.2
+scikit_learn==0.23.1

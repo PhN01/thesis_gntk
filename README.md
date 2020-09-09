@@ -1,15 +1,11 @@
 # Graph Neural Tangent Kernels
 ## An Investigation of the Induced Graph Kernels of Graph Neural Networks
 
-[General Information](#general-info)
-
-[Setup](#setup)
-
-[Results](#results)
-
-[Running Experiments](#run-exp)
-
-[References](#refs)
+[General Information](#general-info)<br>
+[Setup](#setup)<br>
+[Results](#results)<br>
+[Running Experiments](#run-exp)<br>
+[References](#refs)<br>
 
 ## General Information
 

@@ -3,14 +3,11 @@
 
 [General Information](#general-info)
 [Setup](#setup)
-    [Virtual Environment](#venv)
-[Third Example](#third-example)
-[Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
+[Results](#results)
+[Running Experiments](#run-exp)
+[References](#refs)
 
-## Example
-## Example2
-## Third Example
-## [Fourth Example](http://www.fourthexample.com) 
+## General Information
 
 This is the Github Repository accompanying my master thesis.
 The purpose of the manuscript is an investigation of the recently proposed Graph Neural Tangent Kernels by Du et al. (2019) \[1\].

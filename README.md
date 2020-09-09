@@ -5,6 +5,7 @@
 [Setup](#setup)<br>
 [Results](#results)<br>
 [Running Experiments](#run-exp)<br>
+[Evaluation](#eval)<br>
 [References](#refs)<br>
 
 ## General Information
@@ -26,16 +27,20 @@ __Supervisors__:
 ## Setup
 ### Virtual Environment
 Experiments of this work were run in a Python 3.7 environment according to `requirements.txt`.
-To setup an analogous environment:
-1. Create a virtual envrionment (for instruction, see e.g. [here](https://docs.python.org/3/library/venv.html))
+To setup an analogous environment run
+<!-- 1. Create a virtual envrionment (for instruction, see e.g. [here](https://docs.python.org/3/library/venv.html))
 2. Install the packages listed in `requirements.txt`:
 ```
 pip install -r requirements.txt
+``` -->
+```
+make setup
 ```
 
 ### Data \[1,2\]
-The data (graph datasets and kernel matrices) of this work is available [here](https://www.dropbox.com/sh/2b8f7dbt3dlukij/AACtetIzzhr_LsDpP4eF6VOka?dl=0).
-For running experiments paste the contents in the respective subfolders of this repository and unzip the archives.
+<!-- The data (graph datasets and kernel matrices) of this work is available [here](https://www.dropbox.com/sh/2b8f7dbt3dlukij/AACtetIzzhr_LsDpP4eF6VOka?dl=0).
+For running experiments paste the contents in the respective subfolders of this repository and unzip the archives. -->
+For more information regarding the data used in this work, please contact the author.
 
 ## Results
 ### Replication Experiment
@@ -66,7 +71,7 @@ Details about the experiments can be found in the Experiment section of the thes
 ### GNTK \[1\]
 To start a GNTK CV experiment for a given dataset, run the following command in the command line:
 ```
-./run_kernel_cv_gntk.sh --dataset DATASET --exp EXPERIMENT --job_type p/b
+./run_scripts/run_gntk_kernel_cv.sh --dataset DATASET --exp EXPERIMENT --job_type p/b
 ```
 The parameters `DATASET` and `EXPERIMENT` have to be replaced by the name of a dataset in `[IMDBBINARY, IMDBMULTI, MUTAG, NCI1, PROTEINS, PTC]` and the name of an experiment in `[a.1, a.2, b.1]`.
 
@@ -74,7 +79,7 @@ The parameters `DATASET` and `EXPERIMENT` have to be replaced by the name of a d
 
 To start a GK CV experiment for a given graph kernel and dataset, run the following command in the command line:
 ```
-./run_kernel_cv_gk.sh --dataset DATASET --kernel KERNEL --job_type p/b
+./run_scripts/run_gk_kernel_cv.sh --dataset DATASET --kernel KERNEL --job_type p/b
 ```
 The parameters `DATASET` and `KERNEL` have to be replaced by the name of a dataset in `[IMDBBINARY, IMDBMULTI, MUTAG, NCI1, PROTEINS, PTC]` and the name of a graph kernel in `[EH, VH, HGKSP_seed0, HGKWL_seed0, MLG, MP, SP, WL]`.
 
@@ -82,9 +87,17 @@ The parameters `DATASET` and `KERNEL` have to be replaced by the name of a datas
 
 To train the GIN for a given dataset, run the following command in the command line:
 ```
-./run_train_gin.sh --dataset DATASET --job_type p/b --gpu GPU}
+./run_train_gin.sh --dataset DATASET --job_type p/b --gpu GPU
 ```
 The parameters `DATASET` and `GPU` have to be replaced by the name of a dataset in `[IMDBBINARY, IMDBMULTI, MUTAG, NCI1, PROTEINS, PTC]` and a boolean value in `[0,1]` indicating the availability of GPUs.
+
+## Evaluation
+The methods used for evaluating the experiments of this work are described in the manuscript. To execute the evaluation, run
+```
+make evaluation
+```
+
+All results will be located in `./reporting`.
 
 ## References
 \[1\] S.S. Du, K. Hou, R.R. Salakhutdinov, B. Poczos, R. Wang, and K. Xu. “Graph Neural Tangent Kernel: Fusing Graph Neural Networks with Graph Kernels” (2019).

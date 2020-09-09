@@ -2,9 +2,13 @@
 ## An Investigation of the Induced Graph Kernels of Graph Neural Networks
 
 [General Information](#general-info)
+
 [Setup](#setup)
+
 [Results](#results)
+
 [Running Experiments](#run-exp)
+
 [References](#refs)
 
 ## General Information

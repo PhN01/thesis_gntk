@@ -14,3 +14,5 @@ from .kernal_normalization_results_1 import kernel_normalization_results_1
 from .kernal_normalization_results_2 import kernal_normalization_results_2
 from .num_blocks_results_1 import num_blocks_results_1
 from .num_fc_layers_results_1 import num_fc_layers_results_1
+from .time_complexity import time_complexity
+from .time_profiling import time_profiling

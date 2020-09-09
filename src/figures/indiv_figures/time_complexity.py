@@ -98,4 +98,4 @@ class time_complexity(Plot):
 
 if __name__=="__main__":
 
-    activation_functions().plot()
+    time_complexity().plot()

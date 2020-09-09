@@ -61,7 +61,6 @@ class exp_b_evaluation_1(Plot):
         for kernel in kernels:
             mean_df.loc[kernel,:] = mean_df.loc[kernel,:].apply(lambda x: float(x[:5]) if not x == 0 else 0)
         mean_df = mean_df.rename(index=kernel_rename).replace(0, np.nan)
-        print(mean_df.index)
 
         std_df = df.copy()
         for kernel in kernels:

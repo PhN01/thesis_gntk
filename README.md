@@ -1,18 +1,16 @@
+# Graph Neural Tangent Kernels
+## An Investigation of the Induced Graph Kernels of Graph Neural Networks
 
-# Table of Contents
-1. [Example](#example)
-2. [Example2](#example2)
-3. [Third Example](#third-example)
-4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
-
+[General Information](#general-info)
+[Setup](#setup)
+    [Virtual Environment](#venv)
+[Third Example](#third-example)
+[Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
 
 ## Example
 ## Example2
 ## Third Example
 ## [Fourth Example](http://www.fourthexample.com) 
-
-# Graph Neural Tangent Kernels
-## An Investigation of the Induced Graph Kernels of Graph Neural Networks
 
 This is the Github Repository accompanying my master thesis.
 The purpose of the manuscript is an investigation of the recently proposed Graph Neural Tangent Kernels by Du et al. (2019) \[1\].
@@ -28,7 +26,7 @@ __Supervisors__:
 * Dr. Bastian Rieck
 * Leslie O'Bray
 
-## Setup of the Environment
+## Setup
 ### Virtual Environment
 Experiments of this work were run in a Python 3.7 environment according to `requirements.txt`.
 To setup an analogous environment:
